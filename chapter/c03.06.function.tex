@@ -1,0 +1,215 @@
+%\section{数据、信息与进位制}
+\setcounter{section}{3}
+\setcounter{subsection}{5}
+\subsection{函数与模块}
+
+
+
+
+
+\begin{groups}
+
+
+\group{程序填空}{请在横线处将正确的代码补充完整，每空语句不会超过一句}
+\begin{questions}[rp]
+
+%% ============ 8
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.6}）
+某餐厅推出优惠活动，凡到店消费的顾客均可随机抽取三份小菜中的一份，消费20元以上再赠送一个“荷包蛋”。请用Python程序解决问题。 
+\columnratio{0.6}
+\begin{paracol}{2}
+\begin{lstlisting}
+import random
+def coupon(money):
+    `\clozeblank{2}`
+    if 0 < money <= 20:
+        return food
+    elif money > 20:
+        return food +", 荷包蛋"
+appetizer = ["话梅花生", "拍黄瓜", "凉拌三丝"]
+payment = float(input("输人您的消费金额："))
+`\clozeblank{2}`
+print("赠送的小菜为：" + result)
+\end{lstlisting}
+\switchcolumn
+\begin{lstlisting}[frame=single]
+输入输出示例：
+
+输入您的消费金额：25
+赠送的小菜为：话梅花生, 荷包蛋
+\end{lstlisting}
+\end{paracol}
+
+
+
+\begin{subquestions}
+\subquestion 若输入的消费金额是30元，程序输出的可能结果有\key{~ 3 ~}种。
+\subquestion 请将程序中划线处代码补充完整。
+\end{subquestions}
+
+\begin{solution}
+\begin{lstlisting}
+① food = random.choice(appetizer)
+或 food = appetizer[random.randint(0, 2)]
+② result = coupon(payment)
+\end{lstlisting}
+\end{solution}
+
+
+%% ============ 9
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.6}）
+用Python编写程序，实现一元二次方程式$ax^2+bx+c=0 \, (a \ne 0)$的求解。输人系数$a,b,c$的值，输出方程可能的解。
+
+\begin{subquestions}
+\subquestion 编写函数$f()$实现一元二次方程根的判别式的求解，请完善程序。
+\begin{lstlisting}
+def f(x, y, z):
+    a = y * y
+    b = 4 * x * z
+    `\clozeblank{2}`
+\end{lstlisting}
+
+\subquestion 请将主程序补充完整。
+\begin{lstlisting}[numbers=left]
+import math
+
+a = int(input('系数a：'))
+b = int(input('系数b：'))
+c = int(input('系数c：'))
+delta = f(a, b, c)
+if `\clozeblank{2}`:
+    x1 = (-b + sqrt(delta)) / (2 * a)
+    x2 = (-b - sqrt(delta)) / (2 * a)
+    print(x1, x2)
+else:
+    print("该方程无解")
+\end{lstlisting}
+
+\subquestion 小明在调试程序时发现错误提示“NameError:name 'sqrt' is not defined”，则下列修改可行的是（{\kaishu 多选填字母，全部选对的得2 分，选对但不全的得1 分，不选或有选错的得0 分 }）
+\choice{第8、9行的sqrt改成math.sqrt，其他不改}
+{第1行改成 import sqrt，其他不改}
+{第1行改成 from math import sqrt，其他不改}
+{第6行改成 delta=sqrt(a,b,c)，其他不改}
+\end{subquestions}
+
+\begin{solution}
+\begin{lstlisting}
+① return a - b
+② delta >= 0  或者 f(a, b, c) >= 0
+AC
+\end{lstlisting}
+\end{solution}
+
+
+%% ============ 10
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.6}）
+某次考试的满分是100分，50名学生的成绩都是整数得分，请以10分为等级统计各个等级人数。如8名学生成绩分别为[83, 89, 92, 100, 93, 95, 78, 98]，则70$\sim$79有1人，80$\sim$89有2人，90$\sim$99有4人，100有1人。
+
+\begin{subquestions}
+\subquestion 假设列表$a$中保存了所有分数去除个位数的值，如83分存储为8，79分存储为7，100分存储为10……，函数check()统计了0$\sim$10各个数字出现的次数，并保存在列表$b$中，请完善程序。
+\begin{lstlisting}
+def check(a):
+    b = [0] * 11
+    for i in range(len(a)):
+        `\clozeblank{2}`
+    return b
+\end{lstlisting}
+
+\subquestion 主程序生成了50个随机数模拟学生成绩，并统计各个等级的人数，输出示例如右侧所示，请完善程序。
+\columnratio{0.6}
+\begin{paracol}{2}
+\begin{lstlisting}
+import random
+
+lst = []
+for i in range(50):
+    num = random.randint(76, 100)
+    # 在列表lst中添加一个元素
+    lst.append(`\clozeblank{2}`)  
+\end{lstlisting}
+\switchcolumn
+\begin{lstlisting}[frame=single]
+输出示例：
+
+70 ~ 79分人数有： 6
+80 ~ 89分人数有： 28
+90 ~ 99分人数有： 13
+100分人数有： 3
+\end{lstlisting}
+\end{paracol}
+\begin{lstlisting}
+b = `\clozeblank{2}`
+for i in range(len(b)):
+    if b[i] > 0:
+        print(i*10, "~", i*10+9, "分人数有：", b[i])
+\end{lstlisting}
+
+\end{subquestions}
+
+
+\begin{solution}
+\begin{lstlisting}
+① b[a[i]] += 1
+② num // 10
+③ check(lst)
+\end{lstlisting}
+\end{solution}
+
+
+
+%% ======================= 4
+%% 24.04 高二温中双语学考模拟卷
+\setcounter{qnumber}{1}
+\question 若一个整数$n(n>10)$从左向右和从右向左读其结果相同，且是素数，则称$n$为回文素数，例如$133020331$是回文素数。下列Python 程序段用于找出$1000$以内的所
+有回文素数。
+\begin{subquestions}
+\subquestion 函数hws()判断整数num是否是回文整数，若是则返回True，否则返回False，请完善程序。
+\begin{lstlisting}
+def hws(num):
+    n = str(num)
+    if `\clozeblank{2}`:
+        return True
+    return False 
+\end{lstlisting}
+
+\subquestion 函数sushu()判断整数num是否是素数，若$num$不能被$[2, \sqrt{num}]$内的任何一个整数整除，则$num$是素数，请完善程序。
+\begin{lstlisting}
+import math
+
+def sushu(num):
+    `\clozeblank{2}`
+    for i in range(2, int(math.sqrt(num)) + 1):
+        if `\clozeblank{2}`:
+            flag = False
+            break
+    return flag  
+\end{lstlisting}
+
+\subquestion 请完善主程序，输出10 $\sim$ 1000的回文素数。
+\begin{lstlisting}
+n = 11
+while n < 1000:
+    if `\clozeblank{2}`:
+        print(n)
+    n = n + 2
+\end{lstlisting}
+\end{subquestions}
+
+
+\begin{solution}
+\begin{lstlisting}
+① n == n[::-1]
+② flag = True
+③ num % i == 0
+④ sushu(n) and hws(n)
+\end{lstlisting}
+\end{solution}
+
+
+
+
+\end{questions}
+\end{groups}

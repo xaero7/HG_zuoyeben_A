@@ -1,0 +1,264 @@
+%\section{数据、信息与进位制}
+\setcounter{section}{3}
+\setcounter{subsection}{4}
+\subsection{循环结构的程序实现}
+
+
+
+
+
+\begin{groups}
+
+
+\group{程序填空}{请在横线处将正确的代码补充完整，每空语句不会超过一句}
+\begin{questions}[rp]
+
+%% ============ 8
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.5}）
+编写Python程序进行成绩分析，学号为1～10号同学的信息技术学科成绩依次存储在列表xx中，部分程序代码如下，请回答下列问题：
+\begin{lstlisting}
+xx = [35, 29, 28, 42, 21, 38, 17, 44, 18, 19]
+sum = 0
+for i in `\clozeblank{2}`:
+    sum = sum + i
+`\clozeblank{2}`
+print("信息学科平均分为：" + str(ave))
+\end{lstlisting}
+
+\begin{subquestions}
+\subquestion 请将划线处代码补充完整。
+\subquestion 学号为1～10号同学的通用技术学科成绩依次存储在列表ty中，若要实现统计技术学科分数（技术学科分数为信息技术与通用技术两学科分数之和）大于等于80分的人数，请将划线处代码补充完整。
+\begin{lstlisting}
+xx = [35, 29, 28, 42, 21, 38, 17, 44, 18, 19]
+ty = [29, 31, 26, 38, 40, 41, 26, 41, 21, 33]
+c = 0
+for i in `\clozeblank{2}`:
+    if `\clozeblank{2}`:
+        c = c + 1
+print("技术分数大于等于80的学生有：" + str(c) + "个")
+
+\end{lstlisting}
+\end{subquestions}
+
+
+
+
+\begin{solution}
+\begin{lstlisting}
+① xx
+② ave = sum / len(xx)
+
+③ range(len(xx))  或者 range(len(ty))
+④ xx[i] + ty[i] >= 80
+\end{lstlisting}
+\end{solution}
+
+
+
+%% ============ 9
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.5}）
+用列表sales存储超市某一时段内所销售商品的货号要根据货号统计各商品销量，并将结果存人字典dic中。编写Python程序段如下，请在划线处填人合适的代码。
+\begin{lstlisting}
+sales = ['g01', 'g03', 'g03', 'g04', 'g03', 'g04', 'g01']
+\end{lstlisting}
+\columnratio{0.6}
+\begin{paracol}{2}
+\begin{lstlisting}
+dic = {}
+for i in sales:
+    if `\clozeblank{2}`:  # 货号已存在
+        dic[i] += 1
+    else:
+        `\clozeblank{2}`
+print(dic)
+\end{lstlisting}
+\switchcolumn
+\begin{lstlisting}[frame=single]
+程序输出示例：
+{'g01': 2, 'g03': 3, 'g04': 2}
+\end{lstlisting}
+\end{paracol}
+
+\begin{solution}
+\begin{lstlisting}
+① i in dic
+② dic[i] = 1
+\end{lstlisting}
+\end{solution}
+
+
+
+%% ============ 10
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.5}）
+一小球从100米高度自由落下，与地面碰撞时能量损失一半。假设小球每次与地面碰撞后反弹回到原来一半的高度（小球在运动过程中视为质点，且不计空气阻力），则经过5次落地共经过了287.5米。编写程序，实现计算小球从$m$米高处落下，在$n$次地面碰撞后经过的总路程。
+\columnratio{0.6}
+\begin{paracol}{2}
+\begin{lstlisting}
+height = 0
+m = float(input("输入起始高度："))
+n = int(input("输入次数："))
+for i in `\fbox{range(1, n)}`:
+    if i == 1:
+        height += m
+    else:
+        `\clozeblank{2}`
+    m /= 2
+print("总路程：" + str(height))
+\end{lstlisting}
+\switchcolumn
+\begin{lstlisting}[frame=single]
+输入起始高度：100
+输入次数：5
+
+总路程：275.0
+\end{lstlisting}
+\end{paracol}
+\begin{subquestions}
+\subquestion 变量height的功能是\key{~ 存储下落总路程 ~}。
+\subquestion 请将程序中划线处代码补充完整。
+\subquestion 经过5次落地，应该经过了287.5米，但是程序输出如图所示，请修改加框处代码。
+\end{subquestions}
+
+\begin{solution}
+\begin{lstlisting}
+(2) height += 2 * m
+(3) range(1, n+1)
+\end{lstlisting}
+\end{solution}
+
+
+%% ============ 11
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.5}）
+某市实施交通管制，早晚高峰根据车牌号限行。车牌号一般由5个数字或字母组成。车牌号尾位为0和5的周五限行，1和9周一限行……以此类推。若尾位为字母，以字母前最后一位数字为准。实现上述功能的Python程序代码如下：
+\columnratio{0.6}
+\begin{paracol}{2}
+\begin{lstlisting}
+chepai = input("请输入“浙A”之后的5位车牌号：")
+week = "五一二三四五"
+for i in range(`\clozeblank{2}`, -1):
+    if "0" <= chepai[i] <= "9":
+        num = int(chepai[i])
+        if num <= 5:
+            print("周" + week[num] + "限行！")
+        else:
+        	print("周" + week[10 - num] + "限行！")
+        break
+\end{lstlisting}
+\switchcolumn
+\begin{lstlisting}[frame=single]
+输入输出示例：
+
+请输入“浙A”之后的5位车牌号：
+2P27P
+周三限行！
+\end{lstlisting}
+\end{paracol}
+
+\begin{subquestions}
+\subquestion 划线处应填入的代码是
+\choice{len(chepai)-1, -1}
+{len(chepai), 0}
+{len(chepai)-1, 0}
+{1, len(chepai)+1}
+\subquestion 若车牌为“2P27P”，则程序中的for循环语句执行\key{~ 2 ~}次。
+\end{subquestions}
+
+\begin{solution}
+\begin{lstlisting}
+(1) A
+(2) 2
+(3) int(chepai[i])
+break
+\end{lstlisting}
+\end{solution}
+
+
+%% ============ 12
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.5}）
+“三位一体”是高校招生的一种选拔模式，其所依据的成绩是将考生的高考成绩、学考成绩和综合素质测试成绩按比例折算而成的。编写Python程序，实现将考生学考等级折算成相应的分数这一功能，请将程序补充完整。A等10分，B等9分，C等7分，D等4分。
+
+\begin{subquestions}
+\subquestion 算法一，使用字典实现
+\columnratio{0.6}
+\begin{paracol}{2}
+\begin{lstlisting}
+dj = input("请输入学考等第：")
+dic = {'A': 10, 'B': 9, 'C':7, 'D': 4}
+score = 0
+for i in range(len(dj)):
+    score += `\clozeblank{2}`
+print("成绩折算为：", score)
+\end{lstlisting}
+\switchcolumn
+\begin{lstlisting}[frame=single]
+输入输出示例：
+
+请输入学考等第：AAAAABCABA
+成绩折算为：95
+\end{lstlisting}
+
+\end{paracol}
+
+\subquestion 算法二，使用列表实现
+\begin{lstlisting}
+dj = input("请输入学考等第：")
+lst = [10, 9, 7, 4]
+score = 0
+for i in range(len(dj)):
+    j = `\clozeblank{2}`
+    score += lst[j]
+print("成绩折算为：", score)
+\end{lstlisting}
+
+\end{subquestions}
+
+
+%% ============ 例2
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.5}）
+某压缩算法的基本思想是用一个数值和一个字符代替具有相同值的连续字符串。例如，输入字符串“RRRRRGGBBBBBB”，压缩后为“5R2G6B”。
+\begin{lstlisting}
+st = input("输人字符串：")
+c = 1; p = 1; s = ""
+while p <= len(st)-1:
+    if `\clozeblank{2}`:
+        c += 1
+    else:
+        s += str(c) + st[p-1]
+        `\clozeblank{2}`
+    p += 1
+`\fbox{s += str(c) + st[p-1]}`
+print("压缩后数据为：", s)
+
+\end{lstlisting}
+
+
+\begin{subquestions}
+\subquestion 请将程序补充完整。
+\subquestion 若去掉加框处程序，输入字符串“RRRRRGGBBBBBB”，则输出结果是：\key{~ 5R2G ~}。
+\end{subquestions}
+
+\begin{solution}
+\begin{lstlisting}
+st[p] == st[p-1]
+c = 1
+5R2G
+\end{lstlisting}
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+\end{questions}
+\end{groups}
