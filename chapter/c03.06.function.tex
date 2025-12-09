@@ -109,7 +109,7 @@ AC
 某次考试的满分是100分，50名学生的成绩都是整数得分，请以10分为等级统计各个等级人数。如8名学生成绩分别为[83, 89, 92, 100, 93, 95, 78, 98]，则70$\sim$79有1人，80$\sim$89有2人，90$\sim$99有4人，100有1人。
 
 \begin{subquestions}
-\subquestion 假设列表$a$中保存了所有分数去除个位数的值，如83分存储为8，79分存储为7，100分存储为10……，函数check()统计了0$\sim$10各个数字出现的次数，并保存在列表$b$中，请完善程序。
+\subquestion 假设列表$a$中保存了所有成绩十位数的值，如83分存储为8，79分存储为7，100分存储为10……，函数check()统计了0$\sim$10各个数字出现的次数，并保存在列表$b$中，请完善程序。
 \begin{lstlisting}
 def check(a):
     b = [0] * 11
@@ -124,11 +124,11 @@ def check(a):
 \begin{lstlisting}
 import random
 
-lst = []
+lst = [0] * 50
 for i in range(50):
-    num = random.randint(76, 100)
-    # 在列表lst中添加一个元素
-    lst.append(`\clozeblank{2}`)  
+    num = random.randint(0, 100)
+    # 在列表lst中保存num的值
+    `\clozeblank{2}`  
 \end{lstlisting}
 \switchcolumn
 \begin{lstlisting}[frame=single]
@@ -142,9 +142,11 @@ for i in range(50):
 \end{paracol}
 \begin{lstlisting}
 b = `\clozeblank{2}`
-for i in range(len(b)):
+for i in range(len(b)-1):
     if b[i] > 0:
         print(i*10, "~", i*10+9, "分人数有：", b[i])
+if b[10] > 0:
+    print("100分人数有：", b[10])
 \end{lstlisting}
 
 \end{subquestions}

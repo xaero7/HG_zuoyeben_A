@@ -1,0 +1,155 @@
+%\section{数据、信息与进位制}
+\setcounter{section}{4}
+\setcounter{subsection}{2}
+\subsection{利用pandas模块处理数据}
+
+
+
+\begin{groups}
+
+
+\group{程序填空}{请在横线处将正确的代码补充完整，每空语句不会超过一句}
+\begin{questions}[rp]
+
+%% ============ 6
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本4.3}）
+2018年，我国流通领域重要生产资料市场价格数据的示例如图所示。编写Python程序，统计每个产品的最高价格和平均价格。
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.6\linewidth]{pic/c04.03.6data}
+\end{figure}
+
+\columnratio{0.5}
+\begin{paracol}{2}
+\begin{lstlisting}
+import pandas as pd
+df = pd.read_csv("data.csv")
+df_g = `\fbox{\color{white}I\hspace{3cm}}`
+df_max = df_g["价格（元）"].max()
+df_mean = `\clozeblank{2}`
+print(df_max)
+print(df mean)
+\end{lstlisting}
+\switchcolumn
+\begin{lstlisting}[frame=single]
+加框处可选语句：
+(A). df.groupy("类别")
+(B). df.groupy("产品名称")
+(C). df.groupy("价格（元）")
+\end{lstlisting}
+\end{paracol}
+实现该功能的Python程序如上所示，加框处应选：\key{~ B ~}，并将划线处补充完整。
+
+\begin{solution}
+B；
+df\_g["价格（元）"].max()
+\end{solution}
+
+
+%% ============ 7
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本4.3}）
+某同学收集了部分城市2022年4月每天24小时空气主要污染物浓度数据，按天分别保存在CSV文件中，如4月1日的数据保存在“20220401.csv”中，数据格式示例如图所示：
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.7\linewidth]{pic/c04.03.7AQI}
+\end{figure}
+\begin{subquestions}
+\subquestion 定义函数dave，功能是读取数据文件，计算各主要空气污染物的日平均浓度，并返回AQI的日平均浓度，代码如下：
+\begin{lstlisting}
+def dave(fn):
+    df = pd.read_csv(fn)
+    df1 = df[df.columns[2:]]  # 取type及其后的所有列
+    g = dfl.groupby(`\clozeblank{2}`, as_index=False).mean()
+    return `\clozeblank{2}`
+\end{lstlisting}
+请在划线①处应填入合适的代码，并为划线②处选填合适的代码（{\kaishu 单选，填字母}）
+\choice{\texttt{df[df.type=='AQI']}}
+{\texttt{df1.AQI}}
+{\texttt{g.AQI}}
+{\texttt{g[g.type=='AQI']}}
+
+\subquestion 统计2022年4月1日十个城市中空气质量优或良的城市个数（空气污染指数AQI$\le 50$为优，AQI$\le 100$为良），代码如下，请将划线处程序补充完整：
+\begin{lstlisting}
+filename = "20220401.csv"
+aqi = `\clozeblank{2}`
+n = 10;  ans = 0
+city = aqi.columns[1:n+1]  # columns可以取得数据框对象aqi的所有列名称
+for i in range(n):
+	if aqi.at[`\clozeblank{2}`] <= 100:
+	    ans += 1
+print(ans)
+\end{lstlisting}
+\end{subquestions}
+
+\begin{solution}
+\begin{lstlisting}
+"type"
+D
+dave(filename)
+0, city[i]
+\end{lstlisting}
+\end{solution}
+
+
+%% ============ 例2
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本4.3}）
+小王从网站上收集了2020年浙江省各区县气象台发布的预警数据，数据集格式如图所示。为了分析各气象台的预警情况，小王编写了如下Python程序
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.6\linewidth]{pic/c04.03.weather}
+\end{figure}
+\begin{subquestions}
+\subquestion 若要显示2020年暴雨预警次数超过15次的气象台信息，请在划线处给出\udt{两种}实现方式
+\begin{lstlisting}
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv("data_weather.csv")
+print(`\clozeblank{2}`)
+\end{lstlisting}
+
+\subquestion 若要了解该年中没有出现过的极端天气的情况（如图示中的“暴雪”），并把这些天气预警数据列从数据表中去除，请完善下面的代码。
+\begin{lstlisting}
+for i in df.columns[2:]:         # columns可以取得数据框df的所有列名称
+    if `\clozeblank{2}`:
+        df = df.drop(i, axis=1)  # 根据列名称$i$删除列
+\end{lstlisting}
+
+\subquestion 小王想做一份浙江省各地市台风天气分析汇报，针对各地市发生台风次数进行比较分析，添加的程序段与绘图结果如下：
+\columnratio{0.5}
+\begin{paracol}{2}
+\begin{lstlisting}
+df2 = df.groupy("市区").sum()
+plt.figure(figsize=(10,5))
+`\clozeblank{2}`
+plt.titile("2020年各地市台风预警情况")
+plt.xlabel("地市")
+plt.ylabel("台风预警次数")
+plt.show()
+\end{lstlisting}
+\switchcolumn
+\includegraphics[width=\linewidth]{pic/c04.03.weather2}
+\end{paracol}
+
+划线处的代码应为
+\choice{\texttt{plt.bar(df2.\!市区, df2.\!台风)}}
+{\texttt{plt.bar(df2.index, df2.\!台风)}}
+{\texttt{plt.plot(df2.columns[0:], df2.\!台风)}}
+{\texttt{plt.plot(df2.index, df2.台风)}}
+\end{subquestions}
+
+\begin{solution}
+\begin{lstlisting}
+① df[df["暴雨"] > 15]  或 df[df.暴雨 > 15] 
+② df[i].sum() == 0
+③ B
+\end{lstlisting}
+\end{solution}
+
+
+
+
+\end{questions}
+\end{groups}

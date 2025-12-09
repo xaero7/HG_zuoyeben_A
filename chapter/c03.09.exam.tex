@@ -1,0 +1,374 @@
+\setcounter{section}{3}
+\setcounter{subsection}{9}
+\subsection{单元练习}
+
+\begin{groups}
+
+\group{选择题}{在每小题给出的四个选项中，只有一项是符合题目要求的}
+\begin{questions}[rp]
+
+%% ============ 1
+\question
+有Python程序段如下：
+\begin{lstlisting}
+a = "123";   b = 123;    c = `\underline{\hspace*{2cm}}`
+\end{lstlisting}
+若变量$c$的值为整型数据123123，则程序划线处的正确表达式是
+\choice{a * 2}
+{a + a}
+{int(a) * 1000 + a}
+{int(a + a)}
+
+\begin{solution}
+D
+\end{solution}
+
+
+%% ============ 2
+\question
+下列Python表达式的值为5的是
+\choice{\stt{len(range(0,5))}}
+{\stt{max(5, 10, 15)}}
+{\stt{len([1, 5])}}
+{\stt{ord('5')}}
+
+\begin{solution}
+A
+\end{solution}
+
+
+%% ============ 3
+\setcounter{qnumber}{3}
+\question
+有如下Python程序：
+\begin{lstlisting}
+s = "Happy New Year!";   m = `\underline{\hspace*{2cm}}`
+if m == "Happy":
+    print("Happy to you!")
+elif m == "Year":
+    print("Good Luck!")
+else:
+    print("It's a fine day!")
+\end{lstlisting}
+运行该程序，若得到的结果是"Good Luck!"，则划线处代码是
+\choice{s[9:13]}
+{s[10:13]}
+{s[10:14]}
+{s[11:14]}
+
+\begin{solution}
+C
+\end{solution}
+
+
+%% ============ 4
+\question
+成年人的静息心率通常为60～100次/分，低于60称为心动过缓，高于100称为心动过速。现将测得的某人心率存入变量\stt{rate}，下列Python程序段\udt{不能}输出心率状态的是
+\choice{选项A}{选项B}{选项C}{选项D}
+
+\begin{minipage}{0.48\textwidth}
+\begin{lstlisting}
+选项A.  sta = "心动过缓"
+        if rate > 100:
+            sta = "心动过速"
+        elif rate <= 100:
+            sta = "正常"
+        print(sta)
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+\begin{lstlisting}
+选项B.  if rate > 100:
+            sta = "心动过速"
+        elif rate < 60:
+            sta = "心动过缓"
+        else:
+            sta = "正常"
+        print(sta)
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+\begin{lstlisting}
+选项C.  sta = "心动过速"
+        if rate < 60:
+            sta = "心动过缓"
+        elif rate <= 100:
+            sta = "正常"
+        print(sta)
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+
+\begin{lstlisting}
+选项D. if rate < 60:
+          sta = "心动过缓"
+       if rate > 100:
+           sta = "心动过速"
+       if rate >= 60 and rate <= 100:
+           sta = "正常"
+       print(sta)
+\end{lstlisting}
+\end{minipage}
+
+\begin{solution}
+A
+\end{solution}
+
+%% ============ 5
+\setcounter{qnumber}{1}
+\question
+某算法的部分程序代码及其相对应的流程图如下：
+
+\begin{minipage}{0.55\linewidth}
+\begin{lstlisting}
+s = 1
+for i in range(1, `\clozeblank{1}`):
+    if i % 2 != 0:
+        `\clozeblank{2}`
+print(s)
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\linewidth}
+\centering
+\includegraphics[width=0.8\linewidth]{pic/c03.09.5flow.jpg}
+\end{minipage}
+
+则程序中划线①②处应填入的是
+\choice{\stt{①11 ②s*=i}}
+{\stt{①11  ②s*=i+1}}
+{\stt{①10  ②s*=i}}
+{\stt{①10  ②s*=i-1}}
+
+\begin{solution}
+A
+\end{solution}
+
+
+%% ============ 6
+\setcounter{qnumber}{6}
+\question
+若$x$是实型变量，则下列选项中，与表达式 \stt{ x > 0 and not x > 5} 等价的是
+\stt{①not(x <= 0 and x > 5)} \stt{② not(x <= 0 or x > 5) ③ x > 0 and x <= 5 ④ x > 0 or x <= 5}
+\choice{①③}{①④}{②③}{②④}
+
+\begin{solution}
+C
+\end{solution}
+
+
+%% ============ 7
+\question
+有如下Python程序段：
+\begin{lstlisting}
+s = "6st-udYy"
+t = ""
+for i in range(len(s)):
+    if s[i] >= "a" and s[i] <= "z":
+        t = t + s[i]
+print(t)
+\end{lstlisting}
+该程序段的功能是输出字符串$s$中的
+\choice{小写字母个数}{所有小写字母}{所有数字之和}{所有非数字字符}
+
+\begin{solution}
+B
+\end{solution}
+
+
+%% ============ 8
+\question
+斐波那契数列又称黄金分割数列，指的是这样一个数列：$0, 1, 1, 2, 3, 5, 8, 13, 21, 34, \cdots$ 在数学上，斐波那契数列以下面的方法来定义：
+$ F(0) = 0 \ (n=0), F(1) = 1 \ (n=1), F(n) = F(n-1) + F(n-2) \ (n \geq 2)$，输出斐波那契数列中第$10$个数的Python程序如下：
+\begin{lstlisting}
+def fib(n):
+    a, b = 0, 1
+    for i in range(n):
+        `\fbox{\stt{a, b = b, a + b}}`
+    return a
+print(fib(9))
+\end{lstlisting}
+关于加框处的代码，下列说法正确的是
+\choice{最多执行1次}{执行次数可以无限次}{交换a和b的值}{从数列中的第三项起，每一项都是它相邻的前两项之和}
+
+\begin{solution}
+D
+\end{solution}
+
+
+%% ============ 9
+\question
+有如下Python程序：
+\begin{lstlisting}
+str1 = input("请输入一个二进制整数:")
+str1_len = len(str1)
+s = 0
+for i in range(str1_len):
+    a = int(str1[i])
+    b = 2 ** (str1_len - i - 1)
+    x = a * b
+    s += x
+print(s)
+\end{lstlisting}
+运行该程序，输入1101110，程序结果为
+\choice{110}{111}{220}{1101110}
+
+\begin{solution}
+A
+\end{solution}
+
+
+%% ============ 10
+\question
+有10个数据$34,22,101,8,14,88,24,17,54,7$依次存放在列表list1中，有如下Python程序：
+\begin{lstlisting}
+list1 = [34, 22, 101, 8, 14, 88, 24, 17, 54, 7]
+num = list1[0]
+for i in range(1, 10):
+    if list1[i] < num:
+        num = list1[i]
+print(num)
+\end{lstlisting}
+当程序运行结束时，输出的值是
+\choice{101}{7}{8}{88}
+
+\begin{solution}
+B
+\end{solution}
+
+
+%% ============ 11
+\setcounter{qnumber}{1}
+\question
+字符串生成程序。程序功能：输入由多个正整数组成的字符串$t1$（这些正整数以“,”为分割符和结束符），并以这些整数为位置信息，依次从字典$t2$中提取相应字符并连接成字符串$s$，最后将字符串$s$输出。其中，字典内容$t2$从文件“dictionary.txt”中读取。
+
+如：\stt{t1 = "2,8,15,"}，且$t2$从文件“dictionary.txt”中读取的内容为“python is a programming language.” 程序最终输出的字符串$s$为：\stt{yio}。
+
+实现上述功能的Python程序如下，请完善程序。
+\begin{lstlisting}
+f = open('dictionary.txt', 'r')
+t1 = input('字符位置:')
+t2 = f.read()  # 从文件中读取字典内容
+s = ""
+t = ""
+for i in range(`\clozeblank{2}`):
+    c = t1[i]
+    if c == ',':
+        p = int(t)
+        s = s + t2[p-1]
+        t = ""
+    else:
+        `\clozeblank{2}`
+print('生成内容:', s)
+f.close()  # 关闭文件
+\end{lstlisting}
+
+\begin{solution}
+① len(t1) \\
+② t = t + c
+\end{solution}
+
+
+%% ============ 12
+\setcounter{qnumber}{1}
+\question
+在平面直角坐标系中，给定一组有序的点。从原点出发，依次用线段连接这些点，构成一条折线，要求编写一个“计算折线长度”的Python程序，该Python程序代码编写思路如下：
+
+{\kaishu
+① 输入各点的坐标（最后一个点的坐标后不加逗号），存入变量 $a$ 中；\\
+② 将原点坐标加到坐标序列 $a$ 的最前端； \\
+③ 以逗号为界从 $a$ 中取出各点的坐标，存入列表 $b$ 中；其中列表 $b$ 中的第一个和第二个数字为第一个点的 $x$ 坐标和 $y$ 坐标，第三个和第四个数字为第二个点的 $x$ 坐标和 $y$ 坐标，以此类推；  
+④ 计算折线长度。若以 $b[i]$ 标记为相邻两个点中前者的 $x$ 坐标，则 $b[i+2]$ 为后者的 $x$ 坐标，$b[i+1]$ 为前者的 $y$ 坐标，$b[i+3]$ 为后者的 $y$ 坐标。i的最小值为0，最大值为$len(b)-4$，步长为2。运用for句求折线长度。
+}
+\begin{lstlisting}
+from math import sqrt
+a = input("请输入各点的坐标:")
+`\clozeblank{2}`     # 补上原点坐标
+b = a.split(",")     # 以逗号为界将坐标分割后存入列表b中
+if len(b) % 2 == 1:
+    print("输入的坐标有误")
+else:
+    s = 0
+    for i in range(0, len(b) - 2, `\clozeblank{1}`):
+        s = s + sqrt((int(b[i+2])-int(b[i]))**2 + (int(b[i+3])-int(b[i+1]))**2)
+    else:
+        print("折线长度为:", s)
+\end{lstlisting}
+
+\begin{subquestions}
+\subquestion 若三个点的坐标为$(5,10),(8,12),(6,17)$，则输入数据应为 \underline{\hspace{4cm}}。
+\subquestion 请在划线处填入合适的代码。
+\end{subquestions}
+
+\begin{solution}
+(1) 5,10,8,12,6,17 \\
+(2) a = "0,0," + a \\
+(3) 2
+\end{solution}
+
+
+%% ============ 13
+\setcounter{qnumber}{13}
+\question
+小明设计了一个加密程序，对于任意输入的一个字符串，运行程序后会输出相应的密文。其中，字符加密算法的思路如下：
+
+{\kaishu
+(1) 只针对英文字母和数字进行加密，其余字符保持不变；  \\
+(2) 将原文中的小写字母转换成大写字母；  \\
+(3) 根据第2步所得结果，若是英文字母，则逐个后移4位（例如“A”→“E”，“Z”→“D”）；若是数字，则逐个前移2位（例如：“3”→“1”，“1”→“9”）。
+}
+
+实现上述要求的某Python程序如下，但程序加框处代码有误，请修改。
+\begin{lstlisting}
+s1 = input("请输入明文:")
+s2 = ""
+for i in range(len(s1)):
+    s = ""
+    if s1[i] >= "a" and s1[i] <= "z":
+        s = chr(ord(s1[i]) - 32)
+        s = chr((ord(s) - ord("A") + 4) % 26 + ord("A"))
+    elif s1[i] >= "A" and s1[i] <= "Z":
+        s = chr((ord(s1[i]) - ord("A") + 4) % 26 + ord("A"))
+    elif s1[i] >= "0" and s1[i] <= "9":
+        `\fbox{s = chr((ord(s1[i]) - ord("A") - 2) % 10 + ord("A"))}`
+    else:
+        `\fbox{s2 = s2 + s1}`
+    s2 = s2 + s
+print("得到的密文是:", s2)
+\end{lstlisting}
+
+\begin{solution}
+① chr((ord(s1[i]) - ord('0') - 2) \% 10 + ord('0')) 或者 s = str(  (int(s1[i]) + 8) \% 10  )\\
+② s2 = s2 + s1[i]
+\end{solution}
+
+
+%% ============ 14
+\setcounter{qnumber}{14}
+\question
+小范想要编写一个Python程序，实现统计离散数据中的“极大值”，即统计数值大于左右相邻两数的数。假设数据序列的左右端点不计入统计极大值的个数，且相邻相等的两数也不计入统计。例如：若输入数据 \stt{2 3 1 4 6 2}（以空格分隔），则极大值为 \stt{3,6}。
+
+\begin{subquestions}
+\subquestion 若输入以下10个数据：\stt{5 78 67 8 64 78 98 4 5 7}，则极大值为 \underline{\hspace{4cm}}。
+\subquestion 若极大值存储在列表max\_list中，请将代码填写完整。
+\end{subquestions}
+
+\begin{lstlisting}
+num = input("输入数据:").split()     # 将以空格分隔的数字字符串存储在列表num中
+numlist = list(map(int, num))       # 将列表各元素转换成整型存储在列表numlist中
+i = 1
+max_list = []
+while i < len(numlist) - 2:
+    if `\clozeblank{2}`:
+        max_list.append(numlist[i])
+    i += 1
+print(max_list)
+\end{lstlisting}
+
+\begin{solution}
+(1) 78, 98 \\
+(2) numlist[i] > numlist[i-1] and numlist[i] > numlist[i+1]
+\end{solution}
+
+\end{questions}
+\end{groups}

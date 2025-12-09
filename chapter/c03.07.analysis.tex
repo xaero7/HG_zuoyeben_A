@@ -1,0 +1,232 @@
+\setcounter{section}{3}
+\setcounter{subsection}{6}
+\subsection{解析算法的程序实现}
+
+\begin{groups}
+
+\group{程序填空}{请在横线处将正确的代码补充完整，每空语句不会超过一句}
+\begin{questions}[rp]
+
+%% ============ 1
+
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.7}）
+有如下数列：$1, 4, 5, 9, 14, 23, \cdots $ 该数列可以用以下递推的方式进行定义：
+\[
+F(n)=
+\begin{cases}
+1 & (n=1) \\
+4 & (n=2) \\
+\underline{\hspace{1cm}} & (n>2, n \in \mathbb{N})
+\end{cases}
+\]
+则划线处的表达式为
+\choice{$F(n+1)+F(n)$}{$F(n)+F(n-1)$}{$F(n-1)+F(n-2)$}{$F(n-1)+2$}
+
+\begin{solution}
+C
+\end{solution}
+
+
+%% ============ 2
+
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.7}）
+某超市每天傍晚 17:30 后对绿叶蔬菜类有买二送一活动：顾客购买任意三种质量均不超过 1000 克绿叶蔬菜（以 $a$, $b$, $c$ 表示），收费时会在总价 $s$ 中免收价格最低的一种蔬菜。则该活动的实际折扣（= 实付金额 / 总金额 $\times 100$，计算结果保留两位小数）的 Python 表达式为
+\choice{\stt{int(s-min(a,b,c)/s*100)}}
+{\stt{int((s-min(a,b,c))/s*100+0.5)}}
+{\stt{round((s-max(a,b,c))/s*100,2)}}
+{\stt{round((s-min(a,b,c))/s*100,2)}}
+
+\begin{solution}
+D
+\end{solution}
+ 
+%% ============ 3
+
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.7}）
+模拟一个简易计算器，其功能是：输入两个数和一个运算符（加、减、乘、除），进行算术运算并输出运算结果。
+
+\begin{subquestions}
+\subquestion 用 Python 语言编写的程序如下，请在划线处填入合适的语句或表达式，实现程序功能。
+\begin{lstlisting}
+a = float(input("输入第一个数:"))
+ch = `\clozeblank{2}`
+b = float(input("输入第二个数:"))
+if ch == "+":
+    print(a, ch, b, "=", a+b)
+elif ch == "-":
+    print(a, ch, b, "=", a-b)
+elif ch == "*":
+    print(a, ch, b, "=", a*b)
+elif ch == "/":
+    if `\clozeblank{2}`:
+        print(a, ch, b, "=", a/b)
+    else:
+        print("除数不能为0")
+else:
+    print("运算符不正确")
+\end{lstlisting}
+
+\subquestion 当输入的第一个数为 4，运算符为“$\backslash$”，第二个数为 0，则程序输出的结果是
+\choice{0}
+{4}
+{除数不能为 0}
+{运算符不正确}
+\end{subquestions}
+
+\begin{solution}
+\begin{lstlisting}
+① input()
+② b != 0
+D
+\end{lstlisting}
+\end{solution}
+
+
+
+
+
+\begin{solution}
+
+\end{solution}
+
+
+%% ============ 4
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.7}）
+某地块为四边形，地块边长分别为 $L1, L2, L3,L4$，如图所示。求该地块面积的 Python 程序如下，请在划线处填入合适代码。
+
+\begin{minipage}{0.55\textwidth}
+\begin{lstlisting}
+# 利用海伦公式编写求三角形面积的函数area
+def area(a, b, c):
+    p = `\clozeblank{2}`
+    s = sqrt((p * (p-a) * (p-b) * (p-c)))
+    return s
+# 求划分后的两个地块面积之和
+def quad(a, b, c, d, e):
+    s = `\clozeblank{2}`
+    return s
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=0.98\textwidth]{pic/c03.07.4area.jpg}
+\end{minipage}
+
+\begin{lstlisting}
+# 主程序
+from math import sqrt
+f = []
+for i in range(5):  # 依次将图中划分后的五条边的值添加到列表f中
+    a = float(input("输入一条边的值:"))
+    f.append(a)     # 在列表f中添加一个元素a
+s = quad(f[0],f[1],f[2],f[3],f[4])
+print(s)
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+① (a + b + c) / 2
+② area(a, b, e) + area(c, d, e)
+\end{lstlisting}
+\end{solution}
+
+
+%% ============ 5
+% 作业本第5题跳过
+
+
+%% ============ 6
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.7}）
+编写一个摄氏温度转换成华氏温度的 Python 程序，实现功能：输入两个摄氏温度数据（整数），输出包含两列数据，第 1 列为两数之间的摄氏温度值（间隔 1 度、升序），第 2 列为对应的华氏温度值。其中，摄氏温度 $x$ 转换成华氏温度 $y$ 的计算公式为：$y = \frac{9}{5}x + 32$。
+
+输入、输出格式分别如左、右侧所示：
+
+\begin{minipage}{0.5\textwidth}
+\begin{lstlisting}
+输入第1个数:
+15
+输入第2个数:
+10  
+\end{lstlisting}
+\end{minipage}
+\hfill 
+\begin{minipage}{0.5\textwidth}
+\begin{lstlisting}
+摄氏温度      华氏温度
+10            50.0
+11            51.8
+12            53.6
+13            55.4
+14            57.2
+15            59.0
+\end{lstlisting}
+\end{minipage}
+
+实现上述功能的某 Python 程序如下，在方框处补充一段程序代码，完善程序，实现程序功能。
+\begin{lstlisting}
+t1 = int(input("输入第1个整数:\n"))
+t2 = int(input("输入第2个整数:\n"))
+if t1 > t2:
+    t1, t2 = t2, t1
+print("摄氏温度" + "   " + "华氏温度")
+i = t1
+while i <= t2:
+    print(i, `\clozeblank{2}`)
+    `\clozeblank{2}`
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+9 * i / 5 + 32
+i = i + 1
+\end{lstlisting}
+\end{solution}
+
+
+%% ============ 7
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本3.7}）
+测量高度问题。如图所示，$M$是山体的最高点，其底部 $N$ 点不可到达。如何测量该山体的高度 $h$？
+\vspace*{-5mm}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.4\linewidth]{pic/c03.07.7mountain.jpg}
+\end{figure}
+\vspace*{-5mm}
+\begin{subquestions}
+\subquestion 若$B$ 点到 $N $点的长度为 $bn$，$A$ 点到 $N$ 点的长度为 $an$，$MN$ 的高度为 $h$，$A$ 点到 $B$ 点的长度为 $ab$，点 $A$ 对点 $M$ 的仰角为 $a$，点 $B$ 的仰角为 $b$。通过 math 模块中的正切函数 $\tan(x)$ 公式可得：
+\begin{lstlisting}
+an = h / math.tan(a * math.pi / 180)
+bn = `\clozeblank{2}`
+\end{lstlisting}
+
+由于 $ab$ 的长度可以通过测量得到，且 $AB$ 的长度 $ab = bn - an$。将上述两个表达式代入，可得：
+\stt{h = ab/(1/math.tan(b * math.pi / 180) - 1/math.tan(a * math.pi / 180))}
+
+\subquestion 解决该问题的 Python 程序如下，请在下述程序划线处填入合适的代码。
+
+\end{subquestions}
+
+\begin{lstlisting}
+import math
+ab = float(input()); a = float(input()); b = float(input())
+cota = 1 / math.tan(a * math.pi / 180)
+cotb = 1 / math.tan(b * math.pi / 180)
+h = ab / (`\clozeblank{2}`)
+print(round(h, 2))
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+h / math.tan(b * math.pi / 180)
+cotb - cota
+\end{lstlisting}
+\end{solution}
+
+\end{questions}
+\end{groups}

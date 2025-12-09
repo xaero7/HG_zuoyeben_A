@@ -1,0 +1,218 @@
+\setcounter{section}{3}
+\setcounter{subsection}{7}
+\subsection{枚举算法的程序实现}
+
+\begin{groups}
+
+\group{程序填空}{请在横线处将正确的代码补充完整，每空语句不会超过一句}
+\begin{questions}[rp]
+
+%% ============ 1
+\question 
+下列问题中，适合使用枚举算法的是
+\choice{计算两个电阻的并联值}{计算五位同学的平均身高}{查找 100 以内所有能被 6 整除的数}{计算超市的月利润}
+
+\begin{solution}
+C
+\end{solution}
+
+%% ============ 2
+\question 
+有如下 Python 程序段：
+\begin{lstlisting}
+s = 0
+for i in range(1,101):
+    if i % 2 == 0:
+        s += i
+\end{lstlisting}
+该程序段被执行后，变量 $s$ 中存储的是 1～100 之间的
+\choice{偶数个数}{奇数个数}{奇数之和}{偶数之和}
+
+\begin{solution}
+D
+\end{solution}
+
+%% ============ 3
+\setcounter{qnumber}{1}
+\question 
+求方程组的正整数解。有如下方程组：
+\[
+\begin{cases}
+2x^3 + xy - y = 302 \\
+5x + y = 38
+\end{cases}
+\]
+求该方程组正整数解的 Python 程序如下，请将程序划线处的代码补充完整。
+\begin{lstlisting}
+for x in range(1, 8, 1):
+    if `\clozeblank{2}`:
+        print("x=", x)
+        print("y=", 38 - 5 * x)
+\end{lstlisting}
+
+上述程序中，用到的主要算法是 \underline{\hspace{3cm}}。
+
+\begin{solution}
+\begin{lstlisting}
+(1) 枚举算法
+(2) 2*x**3 + x*(38-5*x) - (38-5*x) == 302
+\end{lstlisting}
+\end{solution}
+
+%% ============ 4
+\setcounter{qnumber}{1}
+\question 
+在字符串 \stt{stra} 中删除字符串 \stt{strb}。例如，\stt{stra} 是 "\stt{aabbcccddcccee}"，\stt{strb} 是 "\stt{ccc}"，则得到的新字符串是 "\stt{aabbddee}"。解决该问题的 Python 程序如下，请在程序的划线处填入合适的代码。
+
+\begin{lstlisting}
+stra = input("请输入字符串:")
+strb = input("请输入要删除的字符串:")
+t = "";      i = 0
+while i < len(stra)-len(strb)+1:
+    if stra[i:`\clozeblank{2}`] != strb:
+        t += stra[i]
+        i += 1
+    else:
+        i += len(strb)
+`\clozeblank{2}`
+print(t)
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+① i+len(strb)
+② t += stra[i:]
+\end{lstlisting}
+\end{solution}
+
+%% ============ 5
+\setcounter{qnumber}{1}
+\question 
+输入数字字符串，找出其中的最大值。这是常见的字符处理问题。如输入字符串 "24,34,93,102,2,4,1"，找到的数字最大值为 102。编写 Python 程序实现这一功能的程序如下：
+\begin{lstlisting}[numbers=left]
+str1 = input("请输入数字串:")
+i = 0;     maxnum = 0
+for j in range(len(str1)):
+    if str1[j] > '9' or str1[j] < '0':
+        s = int(str1[i:j])
+        if s > maxnum:
+            maxnum = s
+        i = j + 1
+s = int(str1[i:])
+if s > maxnum:
+    maxnum = s
+print("最大值为:", maxnum)
+\end{lstlisting}
+
+若删除第9～11行代码，程序可能无法正确找出最大值。能测试出这个问题的数据是
+\choice{"24,34,93,102,2"}{"24,34,93,2,102"}{"93,24,102,2,34"}{"24,34,102,2,93"}
+
+\begin{solution}
+B
+\end{solution}
+
+
+%% ============ 6
+\setcounter{qnumber}{1}
+\question 
+某网络服务平台要求新注册用户的密码必须以字母开头，并且含有字母（区分大小写）、数字和下划线，密码字符的长度为 6～18 个字符。判断用户密码是否合法的程序如下，请完善程序。
+
+\begin{lstlisting}
+n1 = False            # 判断数字
+n2 = False            # 判断下划线
+flag = False          # 判断首字符和长度是否满足要求
+password = input('请输入密码:\n')
+n = `\clozeblank{2}`
+ch = password[0]
+if 19 > n > 5 and ('z' >= ch >= 'a' or 'Z' >= ch >= 'A'):
+    flag = True
+if flag:
+    for i in range(1, n):
+        ch = password[i]
+        if '9' >= ch >= '0':
+            n1 = `\clozeblank{2}`
+        elif ch == '_':
+            n2 = True
+if `\clozeblank{2}`:
+    print('结果: 合法')
+else:
+    print('结果: 不合法')
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+① len(password)
+② True
+③ n1 and n2 或者填写 n1 and n2 and flag
+\end{lstlisting}
+\end{solution}
+
+
+
+\setcounter{qnumber}{1}
+\question 
+小明编写了Python程序来读取文本文件 \texttt{工资短信.txt}中各项收入（均为整数），并求得月工资总额。程序的运行结果如下，请在划线处填入合适的代码，完善程序。
+\begin{lstlisting}[frame=single]
+“工资短信.txt”文件内容：岗位工资3420,薪级工资3337,工龄补贴420,山区补贴300,
+工作补贴480,月考勤奖400,交通津贴600,岗位津贴680。
+程序输出结果：月工资总额：9637元
+\end{lstlisting}
+\begin{lstlisting}
+f = open('工资短信.txt','r')
+mx = f.read()
+s = 0;  t = 0
+for i in mx:
+    if `\clozeblank{2}`:
+        t = t * 10 + int(i)
+    else:
+        `\clozeblank{2}`
+        t = 0
+print("月工资总额:", str(s), "元")
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+① i >= '0' and i <= '9'
+② s += t
+\end{lstlisting}
+\end{solution}
+
+
+
+
+
+
+%% ============ 5
+\setcounter{qnumber}{1}
+\question 
+素数（prime number）又称质数，在大于 1 的自然数中，除了 1 和它本身以外不再有其他因数的数称为素数，如 2, 3, 5, 7, 11, …… 求 1～100 之间所有素数的 Python 程序如下，请完善程序。
+
+\begin{lstlisting}
+import math
+list1 = [2, 3]
+n = 0
+for i in range(5, 101, 2):
+    for j in range(2, `\clozeblank{2}`):
+        if `\clozeblank{2}`:
+            break
+        else:
+            list1.append(i)  # 将素数添加到列表list1中
+        n += 1
+for i in range(0, n+2):
+    print(list1[i])
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+① i 或 int(math.sqrt(i))+1 或其他等价表达式
+② i%j == 0 或其他等价表达式
+\end{lstlisting}
+\end{solution}
+
+
+
+
+
+
+\end{questions}
+\end{groups}

@@ -1,0 +1,157 @@
+%\section{数据、信息与进位制}
+\setcounter{section}{4}
+\setcounter{subsection}{3}
+\subsection{数据可视化}
+
+
+
+\begin{groups}
+
+
+\group{程序填空}{请在横线处将正确的代码补充完整，每空语句不会超过一句}
+\begin{questions}[rp]
+
+%% ============ 5
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本4.4}）
+使用Python编程研究一组幂函数的图像问题，程序如下：
+\columnratio{0.5}
+\begin{paracol}{2}
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import numpy as np
+# 生成-1到1之间包含50个数的等差数列
+x = np.linspace(-1, 1, 50)
+plt.plot(x, x ** 0.3, label="y=x**0.3")
+plt.plot(x, x ** 0.5, label="y=x**0.5", linewidth=4)
+plt.plot(x, x, label="y=x")
+`\clozeblank{2}`
+plt.plot(x, x ** 3, label="y=x**3", linewidth=3)
+plt.legend()
+plt.show()
+\end{lstlisting}
+\switchcolumn
+\includegraphics[width=\linewidth]{pic/c04.04.5function}
+\end{paracol}
+对照图像的输出结果阅读上述Python程序。模仿其他行程序，用\udt{散点图}的形式绘制$y=x^2$的函数图像，请在划线处将程序补充完整。
+
+\begin{solution}
+plt.scatter(x, x ** 2, label="y=x**2")
+\end{solution}
+
+
+%% ============ 6
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本4.4}）
+采集某市某辆出租车2007年2月20日全天行驶轨迹的数据集，如图所示。该数据集特征包括：出租车ID、时间、经度、纬度、夹角角度、出租车的瞬时速度和出租车载客状态。
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.7\linewidth]{pic/c04.04.6taxi}
+\end{figure}
+\begin{subquestions}
+\subquestion 图所示数据集文件名为\key{~Taxi\_105.txt~}，出租车ID、时间、经度、纬度、夹角角度、出租车的瞬时速度和出租车载客状态数据的间隔符为\key{~逗号t~}，经度、纬度的数据类型为\key{~float~}（{\kaishu 选填：float / int / str}）。
+
+\subquestion 绘制该数据集中出租车行驶轨迹的Python程序如下，请在方框中填写合适的代码，完善程序。
+\columnratio{0.5}
+\begin{paracol}{2}
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+def track(file):
+    jd = []
+    wd = []
+    for line in open(file):
+        line_data = line.split(',')
+        `\clozeblank{2}`
+        `\clozeblank{2}`
+        jd.append(x)
+        wd.append(y)    
+    plt.plot(jd, wd)
+
+filename = "Taxi_105.txt"
+track(filename)
+plt.show()
+\end{lstlisting}
+\switchcolumn
+\includegraphics[width=\linewidth]{pic/c04.04.6taxi2}
+\end{paracol}
+
+\end{subquestions}
+
+\begin{solution}
+\begin{lstlisting}
+x = float(line_data[2])
+y = float(line_data[3])
+\end{lstlisting}
+\end{solution}
+
+
+%% ============ 7
+\setcounter{qnumber}{1}
+\question （{\kaishu 作业本4.4}）
+小张扫描识别学生作业的客观题数据如图所示，编写Python程序分析各小题的答题情况，部分代码如下
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.6\linewidth]{pic/c04.04.7answer1}
+\end{figure}
+\begin{subquestions}
+\subquestion 读入数据后，若要输出数据的最后5行，请在划线处补充完程序。
+\begin{lstlisting}
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv("hwdata.csv")
+`\clozeblank{2}`
+\end{lstlisting}
+
+\subquestion 函数qcount(id)分析了题号是id的试题，学生各个选项的答题情况。如id=1，则统计ans1列中各个选项答题情况，上图中仅图示部分选A的有1人，选B的有8人。请完善程序。
+\begin{lstlisting}
+def qcount(id):
+	col = "ans" + str(id)
+    opt = df[`\clozeblank{1}`].value_counts()  # 根据列名称统计该列中不同值的个数
+    opt = opt.sort_index()                 # opt对象中数据按索引升序排列
+    print("第", id, "小题各选项的选答人数："）
+    print(opt)                             # 输出各个选项的人数
+    plt.figure(id)
+    plt.pie(opt, labels=["A", "B", "C""D"]) # 绘制饼图
+    plt.title("各选项的选答比例")
+    plt.show()
+
+\end{lstlisting}
+若qnum保存了所有列标题，即\,\texttt{qnum=df.columns}，则划线②处也可以填\key{qnum[id+1]}。
+
+\subquestion 主程序。运行程序后输入数字“10”，结果如下图所示。请在划线③处补充完程序。该题错误率最高的选项是\key{~ D ~}，占比\key{~ 19.63\% ~}。
+\columnratio{0.53}
+\begin{paracol}{2}
+\begin{lstlisting}
+sans ="BDCABDDBCB"  # 标准答案
+while True:
+    n = int(input("输人1-10的题号，
+          查看答题情况；输入0结束："))
+    if `\clozeblank{2}`:
+        qcount(n)  # 调用第（2）的函数
+    elif n == 0:
+        break
+    else:
+        print("输入错误，请重新输入！")
+
+\end{lstlisting}
+\switchcolumn
+\includegraphics[width=\linewidth]{pic/c04.04.7answer2}
+\end{paracol}
+
+\end{subquestions}
+
+\begin{solution}
+\begin{lstlisting}
+① df.tail() 或  df.tail(5)
+（2）② col
+qnum[id+1]
+（3）③ 1 <= n <= 10
+错误率最高D，占比19.63%
+\end{lstlisting}
+\end{solution}
+
+
+
+
+\end{questions}
+\end{groups}
