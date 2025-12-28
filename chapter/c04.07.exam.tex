@@ -1,0 +1,256 @@
+%\section{数据、信息与进位制}
+\setcounter{section}{4}
+\setcounter{subsection}{6}
+\subsection{单元练习}
+
+
+
+\begin{groups}
+
+
+\group{单选题}{单选题}
+\begin{questions}[rp]
+%% =========== 1
+\question
+下列关于大数据外理的说法，不止确的是
+\choice{Hadoop应用于实时到达的大规模数据分析}
+{HDFS对数据进行分布式存储和读取}
+{MapReduce对任务进行分布式计算}
+{HBaSe是一个建立在HDFS之上的分布式数据库}
+\begin{solution}
+A。A解析：Hadoop用于静态数据的处理，实时到达的大规模数据是流数据，A选项的描述错误,B、C、D选项的描述正确。
+\end{solution}
+
+%% =========== 2
+\question
+某DataFrame对象df中包含“id”、“name”等5个数据列、10个数据行，下列语句中能读取df对象中某一列所有数据或多列数据所有数据的是
+\choice{\stt{df.columns}}
+{\stt{df["id"]}}
+{\stt{df.tail()}}
+{\stt{df[2:5]}}
+\begin{solution}
+B。B解析：df.columns查看df对象的列标题，df["id"]查看df对象“id”列的数据，df.tail)查看df对象的最后5行数据，df[2:5]查看df对象的第2、3、4行数据。
+\end{solution}
+
+%% =========== 3
+\question
+某DataFrame对象\stt{books\_data}，包含“图书编号”、“购人价格”、“购人日期”等数据列，若干个数据行，程序段如下：
+\begin{lstlisting}
+import pandas as pd
+books_data = pd.read_csv("data.csv")
+books_data.drop("购入价格", axis=1)
+books_data.sort_values("图书编号", inplace=True) # inplace=True，直接在原数据上排序
+\end{lstlisting}
+该程序段执行后对象\stt{books\_data}中数据
+\choice{与文件\stt{data.csv}中数据一致}
+{按“图书编号”升序排列}
+{减少了“购人价格”数据列}
+{增加了一行，“购入价格”值为“1”}
+\begin{solution}
+B。B解析：代码books\_data.drop("购入价格",axis=1)删除“购人价格”列数据，但不改变原有 books\_data对象中的数据，而是返回另一个DataFrame对象来存放改变后的数据，故C、D 选项错误。books\_data.sortvalues("图书编号"，inplace=True)将books\_data对象中的数据按“图书编号”升序排序后替换该对象内容，故A选项错误
+\end{solution}
+
+%% =========== 4
+\question
+某DataFrame对象df，包含“准考证号”、“学校”、“姓名”、“数学”、“语文”等数据列，下列语句
+\begin{lstlisting}
+① df.groupby("学校").mean()       ② df.groupby("数学").mean()
+③ df.groupby("学校").数学.mean()   ④ df.groupby("学校").describe()
+\end{lstlisting}
+可以以学校为单位，统计出各校学生“数学”成绩平均值的有
+\choice{①②③}
+{①②④}
+{①③④}
+{②③④}
+\begin{solution}
+C。C解析：统计各校学生“数学”成绩平均值，需按“学校”分组后计算各组的“数学”成绩平均值。
+①`df.groupby("学校").mean()`按“学校"分组，计算各列平均值，包含“数学”，满足要求；
+②`df.groupby("数学").mean()`按“数学”成绩分组，计算各列平均值，分组错误；
+③`df.groupby("学校").数学.mean()`按“学校”分组，计算“数学”成绩列的平均值，满足要求；
+④`df.groupby("学校").describe()`按“学校"分组，返回各列的平均值、最大值等，满足要求。
+故①③④正确，本题答案为C。
+\end{solution}
+
+%% =========== 5
+\smkai{阅读下列材料，回答第5～8题。
+
+小张采集浙江省2021年1～7月省外粮源调入数据存储为Excel文件，部分界面如图所示。他先使用Excel软件处理数据，存储为\stt{cata\_2021.csv}文件后，编写Python程序，完成后续处理。
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/c04.07.05.png}
+\end{figure}
+}
+\question 小张从“时间”列数据中提取“月份”数据，在\stt{G2}单元格中输入公式后通过自动填充功能完成所有月份数据的提取，则\stt{G10}单元格中的公式为（提示：函数MID()从文本字符串中指定位置起返回指定长度的字符）
+\choice{\stt{=MID(F2,6,2)}}
+{\stt{=MID(F10,6,2)}}
+{\stt{MID(F10,6,2)}}
+{\stt{=MID(\$F10,6,2)}}
+\begin{solution}
+B。B解析：观察图中G2单元格中公式为=MID(F2,6,2)”，相对弓用左侧单元格F2，公式自动填充到G10单元格时，公式相对引用当前左侧单元格F10，即“=MID(F10,6,2)”，故A、D 错误，C选项缺少“=”，错误。
+\end{solution}
+
+%% =========== 6
+\question
+为清洗数据，小张编写如下Python代码：
+\begin{lstlisting}
+import pandas as pd
+import matplotlib.pyplot as plt
+plt.rcParams["font.sans-serif"] = ["SimHei"]  # 设置字体为黑体
+df = pd.read_csv("cata_2021.csv")
+print(df.columns)                      # ①
+df.drop("时间", axis=1, inplace=True)  # inplace=True，直接在原数据上进行删除操作
+print(df.columns)                      # ②
+df1 = df.drop(df[df.调入量==0].index)  # ③
+\end{lstlisting}
+下列关于该代码段的分析正确的是
+\choice{使用Series对象\stt{df}存储文件“cata\_2021.csv”中数据}
+{①处与②处代码行的输出结果相同}
+{DataFrame对象df、df1中数据的行数相同}
+{③处代码行中\stt{df.\!调入量==0}可替换为\stt{df["调入量"]==0}}
+\begin{solution}
+D。D解析：
+代码df=pd.read\_csv("cata2021.csv")读取文件cata\_2021.csv创建DataFrame对象df,df中数据与文件内容一致，故A错误；
+代码df.drop("时间",axis=1,inplace=True)直接删除df对象中“时间”列数据[axis=0（缺省值）时删除行，inplace=False（缺省值）时不修改 df对象内数据，返回一个新对象存储修改结果],故B选项错误。
+代码df1=df.drop(df[df.调人量==0].index)，删除调人量为0的数据行，结果存人df1，缺省参数inplace=False，df内容不变，df1中的数据行数少于df中的，故C选项错误。
+查看DataFrame对象数据列可采用属性记法或字典记法，即df.调入量、df["\!调入量"]等价，本题答案为D。
+\end{solution}
+
+%% =========== 7
+\question
+为分析1～7月从每个省调入的粮食总量，小张在上一题（XOJ ID=784）代码后，增加如下代码：
+\begin{lstlisting}
+df2 = df1.groupby("来源省名称", as_index=False)  # ①
+df2 = df2["调入量"].sum()
+print(df2.tail(5))
+plt.figure(figsize=(12, 4))
+plt.plot(df2["来源省名称"], df2["调入量"])
+plt.title("1～7月每个省调人的粮食总量对比图")
+plt.show()
+\end{lstlisting}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/c04.07.07.png}
+\end{figure}
+运行上一题和这题代码后，生成图表如下，关于该图表及相关代码段的分析，正确的是
+\choice{①处代码行中"来源省名称"替换为“来源省代码”不影响分组结果}
+{代码\stt{df2["\!调入量"].sum()}计算1～7月从外省调入浙江省的粮食总量}
+{代码\stt{print(df2.tail(5))}执行后输出2行5列数据}
+{从江苏省调入浙江省的粮食总量最多，其次是辽宁省}
+\begin{solution}
+A。A解析：来源省名称、来源省代码均为各省的唯一标识，通过代码df2=df1.groupby("来源省名称"asindex=False)都可实现按省分组，A选项正确。
+df2对象中存储按省分组的结果数据，df2["调入量"].sum()计算各省的调入总量，B选项错误。
+代码“print(df2.tail(5))” 输出df2对象中最后5行，df2是分组计算各省调入总量的结果，包含“来源省名称”和“调入量”两列，C选项错误。
+从图表看，调入浙江省的粮食总量最多的地区为江苏省、其次是黑龙汀省D选项错误。
+\end{solution}
+
+%% =========== 8
+\question
+上面两题（6、7）代码后，小张又增加了如下代码，所有代码运行后，\stt{print(df5)}输出如图所示
+\begin{lstlisting}[numbers=left]
+df3 = df1.groupby("品种", as_index=False)
+df3 = df3["调入量"].sum()
+df4 = df1.groupby("月份", as_index=False)
+df4 = df4["调入量"].sum()
+df4.sort_values("调入量", ascending=False, inplace=True)
+df5 = df1.groupby("品种")
+df5 = df5["调入量"].count()
+print(df5)
+\end{lstlisting}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{pic/c04.07.08.png}
+\end{figure}
+下列分析正确的是
+\choice{第1～2行代码分析了1～7月调入的每个品种的粮食总量}
+{第3～5行代码分析了1～7月每个月份调入的粮食总量并按升序排列}
+{第6～7行代码分析了1～7月调入粮食的品种数}
+{输出结果图中“原粮”、“稻谷”显示两次是因为对象\stt{df1}中存在重复的数据行}
+
+\begin{solution}
+A。解析：代码df3=df1.groupby("品种",asindex=False)和df3=df3["调入量"].sum(），对df)
+中数据按“品种”分组计算各组“调入量”之和，结果包含“品种”“调入量”两列数据，存入 df3，A选项正确。代码df4.sort\_values("调人量"，ascending=False,inplace=True)中ascend ing=False为降序排序,B选项错误。代码df5=df5["调人量"].count(O)中返回“调入量”中非空数据项的个数，即统计调入粮食的品种数，C选项错误。图中原粮和稻谷显示两次是因为对象df1中部分原粮和稻谷前有空格，分析时将“原粮”“原粮”理解为两类，D选项错误。
+\end{solution}
+
+%% =========== 9
+\question
+下列关于数据整理的说法错误的是
+\choice{数据集中缺失的数据可以采用中间值来填充}
+{数据集中异常数据可能包含重要信息}
+{数据集中的重复数据可进行合并删除处理}
+{数据集中格式不一致的数据，一般保留一种格式的数据，删除其他格式的数据}
+\begin{solution}
+D。
+\end{solution}
+
+%% =========== 10
+\question
+文本数据处理的主要步骤包括：①结果呈现，②特征提取，③分词，④数据分析，③文本数据获取。正确的顺序是
+\choice{⑤②④①}
+{⑤③①④}
+{⑤③②④①}
+{⑤①③②④}
+\begin{solution}
+C。C解析：典型的文本处理过程主要包括分词、特征提取、数据分析、结果呈现等
+\end{solution}
+
+%% =========== 11
+\question
+下列说法正确的是
+\choice{文本数据处理时可以通过特征提取提高文本处理的速度和效率}
+{学生选课系统中存放的大量数据属于大数据}
+{大数据要求所有处理的数据都是精确的}
+{领域人工智能指智能系统从一个领域快速跨越到另外一个领域}
+\begin{solution}
+A。
+\end{solution}
+
+%% =========== 12
+\question
+下列关于人工智能的说法，正确的是
+\choice{符号主义认为智能特征可被符号精确地描述，从而被机器仿真}
+{深度学习是符号主义的典型代表}
+{强化学习是根据事先知道的最终答案进行相应调整的学习方法}
+{客服机器人通过大量数据训练提升服务水平，属于行为主义在人工智能中的应用}
+\begin{solution}
+A。暂无解析
+\end{solution}
+
+%% =========== 13
+\question
+谷歌DeepMind近日推出人工智能MuZero。MuZero使用了可自我学习的高性能机器学习模型，在国际象棋、围棋、将棋、Atari 游戏等领域的表现超越人类。现在，科学家已经将 MuZero 计算机算法应用于优化视频压缩这一新的领域。结合上述材料，下列关于人工智能的说法正确的是
+\choice{MuZero“自我学习”的学习机制，属于符号主义的人工智能}
+{从游戏人工智能跨界到优化视频压缩领域，属于领域人工智能的应用}
+{“超越人类”的描述说明当前人工智能已经具备人类的一切能力}
+{MuZero的成功应用预示着人工智能推动着人类社会的发展}
+\begin{solution}
+D。选项B是跨领域人工智能，选项A是联结主义。
+\end{solution}
+
+%% =========== 14
+\question
+下列关于人工智能的说法，正确的是
+\choice{AlphaGo 从围棋跨界到电力控制领域属于混合增强智能}
+{达芬奇外科手术机器人与人类医生共同完成外科手术属于跨领域人工智能}
+{强化学习是以符号主义表达与推理的人工智能学习方法}
+{联结主义通过模仿人类大脑中神经元之间的复杂交互来进行认知推理}
+\begin{solution}
+D。本题考查人工智能的相关知识。
+A 选项 AlphaGo 跨界到电力领域属于跨领域人工智能，A 选项错误；B 选项机器人和人类共同完成手术属于混合增强型人工智能，B 选项错误；C 选项强化学习是问题引导下的人工智能学习方法，C选项错误。故答案选 D。
+\end{solution}
+
+%% =========== 15
+\question
+下列关于数据处理与应用的说法，正确的是
+\choice{用传统算法和数据库系统可以处理的海量数据是大数据}
+{社交网络中产生的实时数据一般采用批处理方式}
+{电商的个性化推荐需要知晓顾客购买商品的原因}
+{结构化、半结构化和非结构化数据共存是大数据的普遍现象}
+\begin{solution}
+D。无
+\end{solution}
+
+
+
+
+\end{questions}
+\end{groups}
